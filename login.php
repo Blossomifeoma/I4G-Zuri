@@ -1,27 +1,33 @@
+<?php
+   session_start();
+
+?>
+
 <!DOCTYPE html>
-<html>
 <body> 
-  <section class="log in form">
-    <h2><strong> Welcome!!!</strong></h2>
+  <section class="login password form">
+  <?php
+     if (isset($_GET["error"])){
+      if($_GET["error"] == "emptyinput"){
+        echo "<p>Some fields not field!</p>";
+      }
+      else if ($_GET["error"] == "wronglogin"){
+        echo "<p>Invalid login details!</p>";
+      }
+    }
+    ?>
+    <h4>Login</h4>
      <div class= "login-form-form">
       <form action="process_login.php" method="post">
-       <?php
-          if(isset($_GET["message"]) && !empty($_GET["message"])){
-            echo $_GET["message"];
-          }
-       ?>
        <p></p>
-          <input type="text" name="user_name" placeholder="username"><br></br>
-          <input type="password" name="pass_word" placeholder="password"><br></br>
-          <button type="submit" name= "submit">Log in</button>
+          <input type="text" name= "username" placeholder= "Username"><br></br>
+          <input type="password" name="password" placeholder="Password"><br></br>
+          <button type="submit" name= "submit"><strong>SUBMIT</strong></button>
+           <p>
+           <li>Forgot password?  <a href= "forgotpassword.php">Click to reset</a></li>
+           </p>
        </form>
      </div>
-        <nav>
-        <p> <li><a href="forgotpassword.php">Forgot Password</a></li></p>
-          </nav>
-
-
-
-    </form>
-     </body>
-     </html>
+     </section>
+</body>
+</html>
